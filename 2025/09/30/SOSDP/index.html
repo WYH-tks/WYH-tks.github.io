@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>&#39;SOSDP&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="SOSDP&#x2F;子集反演&#x2F;子集求和一.问题：给定一个长度为 $2^n$ 的数组 $f$ 。求数组 $g$ ，其中 $g_s&#x3D;\sum_{t\in s}f_t$ 。二.一般解法直接通过循环暴力枚举 $s$ 的子集 $t$ 。for(int t&#x3D;s;;t&#x3D;(t-1)&amp;s)。 实现代码： 123456for(int s&#x3D;0;s&lt;(1&lt;&lt;n);++s)&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;SOSDP&#39;">
+<meta property="og:url" content="https://wyh-tks.github.io/2025/09/30/SOSDP/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SOSDP&#x2F;子集反演&#x2F;子集求和一.问题：给定一个长度为 $2^n$ 的数组 $f$ 。求数组 $g$ ，其中 $g_s&#x3D;\sum_{t\in s}f_t$ 。二.一般解法直接通过循环暴力枚举 $s$ 的子集 $t$ 。for(int t&#x3D;s;;t&#x3D;(t-1)&amp;s)。 实现代码： 123456for(int s&#x3D;0;s&lt;(1&lt;&lt;n);++s)&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-09-30T02:54:07.000Z">
+<meta property="article:modified_time" content="2025-09-30T03:19:13.708Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://WYH-tks.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-SOSDP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/30/SOSDP/" class="article-date">
+  <time class="dt-published" datetime="2025-09-30T02:54:07.000Z" itemprop="datePublished">2025-09-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      &#39;SOSDP&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="SOSDP-子集反演-子集求和"><a href="#SOSDP-子集反演-子集求和" class="headerlink" title="SOSDP&#x2F;子集反演&#x2F;子集求和"></a>SOSDP&#x2F;子集反演&#x2F;子集求和</h1><h2 id="一-问题：给定一个长度为-2-n-的数组-f-。求数组-g-，其中-g-s-sum-t-in-s-f-t-。"><a href="#一-问题：给定一个长度为-2-n-的数组-f-。求数组-g-，其中-g-s-sum-t-in-s-f-t-。" class="headerlink" title="一.问题：给定一个长度为 $2^n$ 的数组 $f$ 。求数组 $g$ ，其中 $g_s&#x3D;\sum_{t\in s}f_t$ 。"></a>一.问题：给定一个长度为 $2^n$ 的数组 $f$ 。求数组 $g$ ，其中 $g_s&#x3D;\sum_{t\in s}f_t$ 。</h2><h2 id="二-一般解法"><a href="#二-一般解法" class="headerlink" title="二.一般解法"></a>二.一般解法</h2><p>直接通过循环暴力枚举 $s$ 的子集 $t$ 。<code>for(int t=s;;t=(t-1)&amp;s)</code>。</p>
+<p>实现代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;(<span class="number">1</span>&lt;&lt;n);++s)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> t=s;;t=(t<span class="number">-1</span>)&amp;s)&#123;</span><br><span class="line">        g[s]+=f[t];</span><br><span class="line">        <span class="keyword">if</span>(!t)	<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="时间复杂度：-O-3-n"><a href="#时间复杂度：-O-3-n" class="headerlink" title="时间复杂度：$O(3^n)$"></a>时间复杂度：$O(3^n)$</h3><h2 id="三-进阶写法"><a href="#三-进阶写法" class="headerlink" title="三.进阶写法"></a>三.进阶写法</h2><ul>
+<li><p>复习高维前缀和，假设对于一个 $m<em>m</em>m$ 三维数组 $a[i][j][k]$ 求前缀和。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;m;++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;m;++j)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;m;++k)</span><br><span class="line">            a[i][j][k]+=a[i<span class="number">-1</span>][j][k];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;m;++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;m;++j)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;m;++k)</span><br><span class="line">            a[i][j][k]+=a[i][j<span class="number">-1</span>][k];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;m;++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;m;++j)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;m;++k)</span><br><span class="line">            a[i][j][k]+=a[i][j][k<span class="number">-1</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们可以发现：如果 $m&#x3D;2$ ，把 $a$ 数组的三个维度压缩成一个长度为 $3$ 的二进制，则上述代码相当于实现了一个 $n$ 为 $3$ 的子集求和。</p>
+<p>我们考虑扩展这种写法，将它扩展到 $n$ 维，每一维大小都是 $2$ 的高维数组求高维前缀和。那么它等效于 $n$ 维的子集求和。</p>
+<p>不难想到将维度状压为二进制后，写法如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;(<span class="number">1</span>&lt;&lt;n);++s)	g[s]=f[s];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;(<span class="number">1</span>&lt;&lt;n);++i)</span><br><span class="line">        <span class="keyword">if</span>(s&gt;&gt;i&amp;<span class="number">1</span>)	g[s]+=g[s^(<span class="number">1</span>&lt;&lt;i)];</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>当外层 $i&#x3D;k$ 做完了，则 $g_s$ 表示的是 $\sum_{t\in s} f_t$ </p>
+<h3 id="时间复杂度：-O-n-2-n"><a href="#时间复杂度：-O-n-2-n" class="headerlink" title="时间复杂度：$O(n*2^n)$"></a>时间复杂度：$O(n*2^n)$</h3><h3 id="四-超集求和：给定一个长度为-2-n-的数组-g-。求数组-f-，其中-f-s-sum-s-in-t-g-t-。"><a href="#四-超集求和：给定一个长度为-2-n-的数组-g-。求数组-f-，其中-f-s-sum-s-in-t-g-t-。" class="headerlink" title="四.超集求和：给定一个长度为 $2^n$ 的数组 $g$ 。求数组 $f$ ，其中 $f_s&#x3D;\sum_{s\in t}g_t$ 。"></a>四.超集求和：给定一个长度为 $2^n$ 的数组 $g$ 。求数组 $f$ ，其中 $f_s&#x3D;\sum_{s\in t}g_t$ 。</h3><p>可以发现该问题为上述问题的逆问题。所以我们可以考虑对于上述代码倒着还原：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;(<span class="number">1</span>&lt;&lt;n);++s)	f[s]=g[s];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">0</span>;s&lt;(<span class="number">1</span>&lt;&lt;n);++i)</span><br><span class="line">        <span class="keyword">if</span>((~s)&gt;&gt;i&amp;<span class="number">1</span>)	f[s]-=f[s^(<span class="number">1</span>&lt;&lt;i)];</span><br></pre></td></tr></table></figure>
+
+<h3 id="时间复杂度：-O-n-2-n-1"><a href="#时间复杂度：-O-n-2-n-1" class="headerlink" title="时间复杂度：$O(n*2^n)$"></a>时间复杂度：$O(n*2^n)$</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wyh-tks.github.io/2025/09/30/SOSDP/" data-id="cuidNdYGRTzGKTjenO9tFJ_LB" data-title="&#39;SOSDP&#39;" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/09/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          &#39;线性代数&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/09/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-%E7%9F%A9%E9%98%B5/" rel="tag">线性代数 矩阵</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 10px;">动态规划</a> <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-%E7%9F%A9%E9%98%B5/" style="font-size: 10px;">线性代数 矩阵</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">&#39;线性代数&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/30/SOSDP/">&#39;SOSDP&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/27/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
